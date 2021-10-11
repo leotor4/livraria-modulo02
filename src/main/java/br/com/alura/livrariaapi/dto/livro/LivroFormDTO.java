@@ -9,6 +9,7 @@ import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -26,7 +27,6 @@ public class LivroFormDTO {
     @Positive
     private BigDecimal price;
 
-    @NotNull
     @Size(min=1)
     private List<String> autores;
 

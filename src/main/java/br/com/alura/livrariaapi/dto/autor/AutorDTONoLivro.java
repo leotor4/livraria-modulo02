@@ -11,10 +11,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AutorDTO {
+public class AutorDTONoLivro {
     private String name;
     private String email;
     private LocalDate birthday;
     private String curriculum;
-    private List<LivroDTONoAutor> livros;
 }

@@ -4,6 +4,9 @@ import br.com.alura.livrariaapi.dto.livro.LivroDTO;
 import br.com.alura.livrariaapi.dto.livro.LivroFormDTO;
 import br.com.alura.livrariaapi.service.livro.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,8 +20,9 @@ public class LivroController {
     private LivroService livroService;
 
     @GetMapping
-    public List<LivroDTO> lista(){
-        return livroService.lista();
+    public Page<LivroDTO> lista(@PageableDefault(size  =5) Pageable paginacao){
+
+        return livroService.lista(paginacao);
     }
 
     @PostMapping

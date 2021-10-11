@@ -5,6 +5,9 @@ import br.com.alura.livrariaapi.dto.autor.AutorFormDTO;
 import br.com.alura.livrariaapi.model.Autor;
 import br.com.alura.livrariaapi.service.autor.AutorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,8 +21,9 @@ public class AutorController {
     AutorService autorService;
 
     @GetMapping
-    public List<AutorDTO> getAutores(){
-        return autorService.lista();
+    public Page<AutorDTO> getAutores(@PageableDefault(size = 5) Pageable paginacao)
+    {
+        return autorService.lista(paginacao);
     }
 
     @PostMapping
