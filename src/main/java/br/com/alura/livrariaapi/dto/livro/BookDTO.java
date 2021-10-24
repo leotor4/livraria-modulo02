@@ -1,7 +1,6 @@
 package br.com.alura.livrariaapi.dto.livro;
 
-import br.com.alura.livrariaapi.dto.autor.AutorDTO;
-import br.com.alura.livrariaapi.model.Autor;
+import br.com.alura.livrariaapi.dto.autor.AuthorDTONoBooks;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LivroDTONoAutor {
+public class BookDTO {
     private String title;
     private BigDecimal price;
+    private List<AuthorDTONoBooks> authors;
 }

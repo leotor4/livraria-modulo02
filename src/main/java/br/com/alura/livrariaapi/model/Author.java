@@ -7,9 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -17,7 +15,7 @@ import java.util.Set;
 @Entity
 @Table(name = "autores")
 @ToString(exclude = "livros")
-public class Autor {
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,5 +26,5 @@ public class Autor {
     private String curriculum;
 
     @ManyToMany(mappedBy = "autores")
-    private List<Livro> livros;
+    private List<Book> books;
 }

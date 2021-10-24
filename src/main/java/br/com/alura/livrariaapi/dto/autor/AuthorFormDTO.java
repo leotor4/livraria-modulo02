@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AutorFormDTO {
+public class AuthorFormDTO {
 
     @NotBlank
     private String name;

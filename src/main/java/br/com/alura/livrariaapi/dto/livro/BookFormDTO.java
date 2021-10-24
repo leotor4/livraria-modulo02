@@ -1,20 +1,22 @@
 package br.com.alura.livrariaapi.dto.livro;
 
-import br.com.alura.livrariaapi.model.Autor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LivroFormDTO {
+public class BookFormDTO {
     @NotNull
     @Size(min=10)
     private String title;
@@ -28,7 +30,7 @@ public class LivroFormDTO {
     private BigDecimal price;
 
     @Size(min=1)
-    private List<String> autores;
+    private List<String> authors;
 
     @NotNull
     @Min(value=100)

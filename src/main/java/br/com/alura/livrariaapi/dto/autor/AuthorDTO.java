@@ -1,6 +1,6 @@
 package br.com.alura.livrariaapi.dto.autor;
 
-import br.com.alura.livrariaapi.dto.livro.LivroDTONoAutor;
+import br.com.alura.livrariaapi.dto.livro.BookDTONoAuthor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +11,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AutorDTO {
+public class AuthorDTO {
     private String name;
     private String email;
     private LocalDate birthday;
     private String curriculum;
-    private List<LivroDTONoAutor> livros;
+    private List<BookDTONoAuthor> livros;
 }

@@ -1,7 +1,6 @@
 package br.com.alura.livrariaapi.controller;
 
-import br.com.alura.livrariaapi.dto.autor.ItemAutorDTO;
-import br.com.alura.livrariaapi.service.RelatorioService;
+import br.com.alura.livrariaapi.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,15 +10,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/relatorios")
-public class RelatoriosController {
+public class ReportsController {
 
     @Autowired
-    RelatorioService relatorioService;
+    ReportService reportService;
 
     @GetMapping("/autor")
     public List<?> relatorioQuantidadeLivrosPorAutor(){
 
-        List<?> resultado = relatorioService.relatorioQuantidadeLivrosPorAutor();
+        List<?> resultado = reportService.reportBookQuantityByAuthor();
         System.out.println(resultado.toString());
         return resultado;
     }
