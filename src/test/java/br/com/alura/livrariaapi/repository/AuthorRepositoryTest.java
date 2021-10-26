@@ -66,7 +66,7 @@ public class AuthorRepositoryTest {
 
         Assertions.assertThat(report)
                 .hasSize(2);
-//                .extracting()
+
     }
 
     @Test
