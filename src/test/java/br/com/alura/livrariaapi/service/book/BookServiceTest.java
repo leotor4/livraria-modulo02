@@ -1,12 +1,11 @@
 package br.com.alura.livrariaapi.service.book;
 
-import br.com.alura.livrariaapi.dto.autor.AuthorDTO;
-import br.com.alura.livrariaapi.dto.autor.AuthorFormDTO;
 import br.com.alura.livrariaapi.dto.livro.BookDTO;
 import br.com.alura.livrariaapi.dto.livro.BookFormDTO;
 import br.com.alura.livrariaapi.model.Author;
-import br.com.alura.livrariaapi.repository.AuthorRepository;
+import br.com.alura.livrariaapi.repository.AuthorRepositoryTest;
 import br.com.alura.livrariaapi.repository.BookRepository;
+import br.com.alura.livrariaapi.repository.BookRepositoryTest;
 import br.com.alura.livrariaapi.service.author.AuthorService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,7 +31,7 @@ public class BookServiceTest {
     AuthorService authorService;
 
     @Mock
-    AuthorRepository authorRepository;
+    AuthorRepositoryTest authorRepository;
 
     @InjectMocks
     BookService bookService;

@@ -2,14 +2,11 @@ package br.com.alura.livrariaapi.service.author;
 
 import br.com.alura.livrariaapi.dto.autor.AuthorDTO;
 import br.com.alura.livrariaapi.dto.autor.AuthorFormDTO;
-import br.com.alura.livrariaapi.model.Author;
-import br.com.alura.livrariaapi.repository.AuthorRepository;
-import org.apache.tomcat.jni.Local;
+import br.com.alura.livrariaapi.repository.AuthorRepositoryTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
@@ -20,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AuthorServiceTest {
 
     @Mock
-    AuthorRepository authorRepository;
+    AuthorRepositoryTest authorRepository;
 
     @InjectMocks
     AuthorService authorService;

@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "livros")
-@ToString(exclude = "autores")
+@ToString(exclude = "authors")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

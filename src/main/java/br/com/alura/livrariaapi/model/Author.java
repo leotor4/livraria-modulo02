@@ -25,6 +25,6 @@ public class Author {
     private LocalDate birthday;
     private String curriculum;
 
-    @ManyToMany(mappedBy = "autores")
+    @ManyToMany(mappedBy = "authors")
     private List<Book> books;
 }

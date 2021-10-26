@@ -30,10 +30,10 @@ public class ReportServiceTest {
 
         Mockito.when(authorRepository.reportBookQuantityByAuhor()).thenReturn(queryResultFormat);
 
-        List<Object> response = reportService.reportBookQuantityByAuthor();
+        List<?> response = reportService.reportBookQuantityByAuthor();
 
         assertEquals(response.size(), 2);
-        assertEquals(response.get(0), "autor: Autor teste");
-        assertEquals(response.get(1), "quantidadeLivros: 10");
+        assertEquals(response.get(0), "Autor teste");
+        assertEquals(response.get(1), 10);
     }
 }
