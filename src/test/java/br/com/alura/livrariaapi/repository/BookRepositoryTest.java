@@ -28,22 +28,26 @@ public class BookRepositoryTest {
     @Autowired
     private TestEntityManager em;
 
+    private Book createBook(String title, BigDecimal price, Integer pages, List<Author> authors,
+                            LocalDate publicationDate){
+        Book newBook = new Book();
+        newBook.setTitle(title);
+        newBook.setPrice(price);
+        newBook.setPages(pages);
+        newBook.setAuthors(authors);
+        newBook.setPublicationDate(publicationDate);
+
+        return newBook;
+    }
+
     @Test
     void shouldReturnAllBooks(){
         LocalDate currentDate = LocalDate.now();
 
-        Book newBook = new Book();
-        newBook.setTitle("Livro1");
-        newBook.setPrice(new BigDecimal(200.0));
-        newBook.setPages(290);
-        newBook.setPublicationDate(currentDate);
+        Book newBook = this.createBook("Livro1", new BigDecimal(200.0), 290, null, currentDate);
         em.persist(newBook);
 
-        Book newBook2 = new Book();
-        newBook2.setTitle("Livro2");
-        newBook2.setPrice(new BigDecimal(200.0));
-        newBook2.setPages(290);
-        newBook2.setPublicationDate(currentDate);
+        Book newBook2 = this.createBook("Livro2", new BigDecimal(200.0), 290, null, currentDate);
         em.persist(newBook2);
 
         List<Book> books =  bookRepository.findAll();

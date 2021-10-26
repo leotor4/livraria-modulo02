@@ -2,6 +2,7 @@ package br.com.alura.livrariaapi.repository;
 
 import br.com.alura.livrariaapi.model.Author;
 import br.com.alura.livrariaapi.model.Book;
+import org.apache.tomcat.jni.Local;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,34 +32,41 @@ public class AuthorRepositoryTest {
     @Autowired
     private TestEntityManager em;
 
+    private Author createAuthor(String name, String email, LocalDate birthday){
+        Author newAuthor = new Author();
+        newAuthor.setName(name);
+        newAuthor.setEmail(email);
+        newAuthor.setBirthday(birthday);
+
+        return newAuthor;
+    }
+
+    private Book createBook(String title, BigDecimal price, Integer pages, List<Author> authors,
+                            LocalDate publicationDate){
+        Book newBook = new Book();
+        newBook.setTitle(title);
+        newBook.setPrice(price);
+        newBook.setPages(pages);
+        newBook.setAuthors(authors);
+        newBook.setPublicationDate(publicationDate);
+
+        return newBook;
+    }
+
     @Test
     void shouldReturnBookQuantityByAuthorReport(){
-        Author newAuthor = new Author();
-        newAuthor.setName("Pedro");
-        newAuthor.setEmail("pedro@gmail.com");
-        newAuthor.setBirthday(LocalDate.now());
+        Author newAuthor = this.createAuthor("Pedro", "pedro@gmail.com", LocalDate.now());
         em.persist(newAuthor);
 
-        Author newAuthor2 = new Author();
-        newAuthor2.setName("JK");
-        newAuthor2.setEmail("jk@gmail.com");
-        newAuthor2.setBirthday(LocalDate.now());
+        Author newAuthor2 = this.createAuthor("JK", "jk@gmail.com", LocalDate.now());
         em.persist(newAuthor2);
 
-        Book newBook = new Book();
-        newBook.setPages(250);
-        newBook.setPrice(new BigDecimal(900.0));
-        newBook.setTitle("A ida dos que não foram.");
-        newBook.setAuthors(Arrays.asList(newAuthor));
-        newBook.setPublicationDate(LocalDate.now());
+        Book newBook = this.createBook("A ida dos que não foram.", new BigDecimal(900.0),
+                250,Arrays.asList(newAuthor), LocalDate.now());
         em.persist(newBook);
 
-        Book newBook2 = new Book();
-        newBook2.setPages(2500);
-        newBook2.setPrice(new BigDecimal(900.0));
-        newBook2.setTitle("Taleb");
-        newBook2.setAuthors(Arrays.asList(newAuthor2));
-        newBook2.setPublicationDate(LocalDate.now());
+        Book newBook2 = this.createBook("Taleb", new BigDecimal(900.0),
+                2500,Arrays.asList(newAuthor2), LocalDate.now());
         em.persist(newBook2);
 
 
@@ -73,16 +81,10 @@ public class AuthorRepositoryTest {
     void shouldReturnAllAuthors(){
         LocalDate currentDate = LocalDate.now();
 
-        Author newAuthor = new Author();
-        newAuthor.setName("Pedro");
-        newAuthor.setEmail("pedro@gmail.com");
-        newAuthor.setBirthday(currentDate);
+        Author newAuthor = this.createAuthor("Pedro", "pedro@gmail.com", LocalDate.now());
         em.persist(newAuthor);
 
-        Author newAuthor2 = new Author();
-        newAuthor2.setName("JK");
-        newAuthor2.setEmail("jk@gmail.com");
-        newAuthor2.setBirthday(currentDate);
+        Author newAuthor2 = this.createAuthor("JK", "jk@gmail.com", LocalDate.now());
         em.persist(newAuthor2);
 
         List<Author> authors =  authorRepository.findAll();

@@ -2,6 +2,7 @@ package br.com.alura.livrariaapi.service.book;
 
 import br.com.alura.livrariaapi.dto.livro.BookDTO;
 import br.com.alura.livrariaapi.dto.livro.BookFormDTO;
+import br.com.alura.livrariaapi.dto.livro.UpdateBookFormDTO;
 import br.com.alura.livrariaapi.model.Author;
 import br.com.alura.livrariaapi.model.Book;
 import br.com.alura.livrariaapi.repository.BookRepository;
@@ -56,5 +57,28 @@ public class BookService {
 
     }
 
+    @Transactional
+    public void update(UpdateBookFormDTO bookFormDTO) {
+        Book book = bookRepository.getById(bookFormDTO.getId());
+        book.setPublicationDate(bookFormDTO.getPublicationDate());
+        List<Author>  authors = bookFormDTO.getAuthors()
+                .stream()
+                .map(a -> authorService.getAuthorByName(a).get(0))
+                .collect(Collectors.toList());
+        book.setAuthors(authors);
+        book.setPages(bookFormDTO.getPages());
+        book.setTitle(bookFormDTO.getTitle());
+        bookRepository.saveAndFlush(book);
+    }
 
+    @Transactional
+    public void deleteBook(Long bookId) {
+        bookRepository.deleteById(bookId);
+    }
+
+    public BookDTO searchById(Long id) {
+        Book book = bookRepository.getById(id);
+
+        return modelMapper.map(book, BookDTO.class);
+    }
 }

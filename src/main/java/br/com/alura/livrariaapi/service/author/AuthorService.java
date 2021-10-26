@@ -2,6 +2,7 @@ package br.com.alura.livrariaapi.service.author;
 
 import br.com.alura.livrariaapi.dto.autor.AuthorDTO;
 import br.com.alura.livrariaapi.dto.autor.AuthorFormDTO;
+import br.com.alura.livrariaapi.dto.autor.UpdateAuthorFormDTO;
 import br.com.alura.livrariaapi.model.Author;
 import br.com.alura.livrariaapi.repository.AuthorRepository;
 import org.modelmapper.ModelMapper;
@@ -43,5 +44,26 @@ public class AuthorService {
 
     public List<Author> getAuthorByName(String autorName){
         return authorRepository.findByName(autorName);
+    }
+
+    @Transactional
+    public void update(UpdateAuthorFormDTO authorFormDTO) {
+        Author author = authorRepository.getById(authorFormDTO.getId());
+        author.setBirthday(authorFormDTO.getBirthday());
+        author.setName(authorFormDTO.getName());
+        author.setEmail(authorFormDTO.getEmail());
+        author.setCurriculum(authorFormDTO.getCurriculum());
+        authorRepository.saveAndFlush(author);
+    }
+
+    @Transactional
+    public void delete(Long authorId) {
+        authorRepository.deleteById(authorId);
+    }
+
+    public AuthorDTO searchById(Long id) {
+        Author author = authorRepository.getById(id);
+
+        return modelMapper.map(author, AuthorDTO.class);
     }
 }
